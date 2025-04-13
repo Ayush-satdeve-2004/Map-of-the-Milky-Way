@@ -1,0 +1,112 @@
+<!-- register.html (no background video, added OTP send option) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", sans-serif; }
+    body, html { height: 100%; background: linear-gradient(to right, #141e30, #243b55); }
+    .register-container {
+      height: 100vh; display: flex; justify-content: center; align-items: center;
+    }
+    .register-box {
+      background: rgba(255, 255, 255, 0.12); backdrop-filter: blur(15px);
+      border-radius: 20px; padding: 40px; width: 400px;
+      box-shadow: 0 0 25px rgba(0,0,0,0.3); text-align: center;
+      animation: fadeIn 1.5s ease;
+    }
+    .register-box h2 { color: #fff; margin-bottom: 20px; font-size: 2rem; }
+    .register-box input {
+      width: 100%; padding: 12px 15px; margin: 10px 0;
+      border: none; border-radius: 10px;
+      background: rgba(255, 255, 255, 0.2); color: #fff; font-size: 1rem;
+    }
+    .register-box input::placeholder { color: #eee; }
+    .register-box input:focus { outline: none; background: rgba(255, 255, 255, 0.35); }
+    .password-wrapper, .otp-wrapper {
+      position: relative; display: flex; align-items: center;
+    }
+    .password-wrapper input, .otp-wrapper input {
+      width: 100%; padding-right: 40px;
+    }
+    .toggle-icon {
+      position: absolute; right: 12px; font-size: 1.2rem;
+      color: #fff; cursor: pointer;
+    }
+    .send-otp-btn {
+      background: #03a9f4; color: white; border: none; padding: 6px 12px;
+      border-radius: 6px; margin-left: 10px; cursor: pointer;
+    }
+    .social-btn {
+      background: #fff; color: #333;
+      padding: 10px; margin-top: 10px; border: none;
+      border-radius: 8px; width: 100%; cursor: pointer;
+    }
+    .register-box button {
+      width: 100%; padding: 12px; margin-top: 15px;
+      border: none; border-radius: 10px;
+      background-color: #4caf50; color: white; font-size: 1rem;
+    }
+    .register-box button:hover { background-color: #388e3c; }
+    .register-box a { color: #fff; text-decoration: underline; display: block; margin-top: 15px; font-size: 0.95rem; }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(-30px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    .credit {
+      position: absolute; bottom: 10px; right: 10px;
+      color: #ccc; font-size: 0.75rem;
+    }
+  </style>
+</head>
+<body>
+
+<div class="register-container">
+  <div class="register-box">
+    <h2>Create Account</h2>
+    <input type="text" placeholder="Username" />
+    <input type="email" id="email" placeholder="Email" />
+    <div class="otp-wrapper">
+      <input type="text" id="otp" placeholder="Enter OTP" />
+      <button class="send-otp-btn" onclick="sendOtp()">Send OTP</button>
+    </div>
+    <div class="password-wrapper">
+      <input type="password" id="registerPassword" placeholder="Password" />
+      <i class="fa-solid fa-eye toggle-icon" onclick="togglePassword('registerPassword', this)"></i>
+    </div>
+    <button>Create Account</button>
+   <!-- <p style="color: white; margin-top: 15px;">or sign up with:</p>
+    <button class="social-btn">Sign up with Google</button>
+    <button class="social-btn">Sign up with Facebook</button>  -->
+    <a href="index.html">Back to Login</a>
+  </div>
+</div>
+
+<div class="credit">🎨 Background: Static gradient for clean register</div>
+
+<script>
+  function togglePassword(id, icon) {
+    const input = document.getElementById(id);
+    const isVisible = input.type === 'text';
+    input.type = isVisible ? 'password' : 'text';
+    icon.classList.toggle('fa-eye');
+    icon.classList.toggle('fa-eye-slash');
+  }
+
+  function sendOtp() {
+    const email = document.getElementById('email').value;
+    if (!email) {
+      alert('Please enter an email address.');
+      return;
+    }
+    // Placeholder logic
+    alert('OTP sent to ' + email);
+    // You can integrate real OTP logic here using backend or services like Firebase/Auth, Twilio, etc.
+  }
+</script>
+
+</body>
+</html>

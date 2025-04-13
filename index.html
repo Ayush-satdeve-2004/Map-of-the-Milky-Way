@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", sans-serif; }
+    body, html { height: 100%; overflow: hidden; }
+    video.bg-video {
+      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+      object-fit: cover; z-index: -1; filter: brightness(0.5);
+    }
+    .login-container {
+      height: 100vh; display: flex; justify-content: center; align-items: center;
+    }
+    .login-box {
+      background: rgba(255, 255, 255, 0.12); backdrop-filter: blur(15px);
+      border-radius: 20px; padding: 40px; width: 400px; box-shadow: 0 0 25px rgba(0,0,0,0.3);
+      text-align: center; animation: fadeIn 1.5s ease;
+    }
+    .login-box h2 { color: #fff; margin-bottom: 20px; font-size: 2rem; }
+    .login-box input {
+      width: 100%; padding: 12px 15px; margin: 10px 0;
+      border: none; border-radius: 10px;
+      background: rgba(255, 255, 255, 0.2); color: #fff; font-size: 1rem;
+    }
+    .login-box input::placeholder { color: #eee; }
+    .login-box input:focus { outline: none; background: rgba(255, 255, 255, 0.35); }
+    .password-wrapper {
+      position: relative; display: flex; align-items: center;
+    }
+    .password-wrapper input {
+      width: 100%; padding-right: 40px;
+    }
+    .toggle-icon {
+      position: absolute; right: 12px; font-size: 1.2rem;
+      color: #fff; cursor: pointer;
+    }
+    .login-box button {
+      width: 100%; padding: 12px; margin-top: 15px;
+      border: none; border-radius: 10px;
+      background-color: #ff4081; color: white; font-size: 1rem; cursor: pointer;
+    }
+    .login-box button:hover { background-color: #e91e63; }
+    .login-box a { color: #fff; text-decoration: underline; display: block; margin-top: 15px; font-size: 0.95rem; }
+    .login-box .guest-login {
+      background-color: #2196F3; margin-top: 10px;
+    }
+    .login-box .guest-login:hover { background-color: #1976D2; }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(-30px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    .credit {
+      position: absolute; bottom: 10px; right: 10px;
+      color: #ccc; font-size: 0.75rem;
+    }
+  </style>
+</head>
+<body>
+
+<video class="bg-video" autoplay muted loop playsinline>
+  <source src="https://videos.pexels.com/video-files/6961824/6961824-uhd_2560_1440_30fps.mp4" type="video/mp4">
+</video>
+
+<div class="login-container">
+  <div class="login-box">
+    <h2>Login</h2>
+    <input type="text" id="username" placeholder="Username" />
+    <div class="password-wrapper">
+      <input type="password" id="loginPassword" placeholder="Password" />
+      <i class="fa-solid fa-eye toggle-icon" onclick="togglePassword('loginPassword', this)"></i>
+    </div>
+    <button onclick="handleLogin()">Login</button>
+  
+    <a href="register.html">Create New Account</a>
+  
+    <!-- Guest Login Button -->
+    <button class="guest-login" onclick="guestLogin()">Guest Login</button>
+  </div>
+</div>
+
+<script>
+  function togglePassword(id, icon) {
+    const input = document.getElementById(id);
+    const isVisible = input.type === 'text';
+    input.type = isVisible ? 'password' : 'text';
+    icon.classList.toggle('fa-eye');
+    icon.classList.toggle('fa-eye-slash');
+  }
+
+  function handleLogin() {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('loginPassword').value;
+
+    if (username && password) {
+      // Assuming login is successful, you can redirect to the next page
+      window.location.href = 'nextpage.html';  // Redirect to nextpage.html
+    } else {
+      alert('Please enter both username and password');
+    }
+  }
+
+  function guestLogin() {
+    // Directly redirects to nextpage.html as a guest
+    window.location.href = 'nextpage.html';
+  }
+</script>
+
+</body>
+</html>
